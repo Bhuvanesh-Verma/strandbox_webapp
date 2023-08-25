@@ -6,3 +6,4 @@ pillow~=9.3.0
 st-pages
 spacy_streamlit
 pypdf
+sentence-transformers
