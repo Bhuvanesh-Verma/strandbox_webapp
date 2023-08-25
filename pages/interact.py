@@ -24,21 +24,21 @@ def get_data(uploaded_file):
     with open('data/research_structure.json', 'r') as f:
         data = json.load(f)
 
-    if uploaded_file is not None:
-        with NamedTemporaryFile(dir='.', suffix='.pdf') as f:
-            f.write(uploaded_file.getbuffer())
-            loader = PyPDFLoader(f.name)
-            pdf_docs = loader.load()
 
-            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=['. '])
-            documents = text_splitter.split_documents(pdf_docs)
-            embeddings = get_embedding_model()
-            vector_store = Qdrant.from_documents(
-                documents,
-                embeddings,
-                location=":memory:",  # Local mode with in-memory storage only
-                collection_name=f'{f.name}',
-            )
+    with NamedTemporaryFile(dir='.', suffix='.pdf') as f:
+        f.write(uploaded_file.getbuffer())
+        loader = PyPDFLoader(f.name)
+        pdf_docs = loader.load()
+
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=['. '])
+        documents = text_splitter.split_documents(pdf_docs)
+        embeddings = get_embedding_model()
+        vector_store = Qdrant.from_documents(
+            documents,
+            embeddings,
+            location=":memory:",  # Local mode with in-memory storage only
+            collection_name=f'{f.name}',
+        )
 
     return data, vector_store
 
@@ -63,24 +63,25 @@ def main():
     st.title("Interact with Strandbox")
 
     uploaded_file = st.file_uploader("Choose a pdf file", accept_multiple_files=False)
-    data, vector_store = get_data(uploaded_file)
+    if uploaded_file is not None:
+        data, vector_store = get_data(uploaded_file)
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(list(data.keys()))
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(list(data.keys()))
 
-    with tab1:
-        create_tab(data["Research Question"], vector_store)
+        with tab1:
+            create_tab(data["Research Question"], vector_store)
 
-    with tab2:
-        create_tab(data["Analytical Framework"], vector_store)
+        with tab2:
+            create_tab(data["Analytical Framework"], vector_store)
 
-    with tab3:
-        create_tab(data["Research Method"], vector_store)
+        with tab3:
+            create_tab(data["Research Method"], vector_store)
 
-    with tab4:
-        create_tab(data["Data Sources"], vector_store)
+        with tab4:
+            create_tab(data["Data Sources"], vector_store)
 
-    with tab5:
-        create_tab(data["Time Horizon"], vector_store)
+        with tab5:
+            create_tab(data["Time Horizon"], vector_store)
 
 
 
