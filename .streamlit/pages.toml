@@ -1,0 +1,29 @@
+[[pages]]
+path = "main.py"
+name = "Home"
+icon = ":house:"
+
+[[pages]]
+path = "pages/topic_modelling.py"
+name = "Topic Modelling"
+icon = "📖"
+
+[[pages]]
+path = "pages/topic_trajectory.py"
+name = "Topic Trajectory"
+icon = "🚀"
+
+[[pages]]
+path = "pages/network.py"
+name = "Network"
+icon = "📡"
+
+[[pages]]
+path = "pages/simulations.py"
+name = "Simulations"
+icon = "🎡"
+
+[[pages]]
+path = "pages/interact.py"
+name = "QA"
+icon = "؟"

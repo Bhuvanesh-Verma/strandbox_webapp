@@ -1,0 +1,62 @@
+{
+  "Research Question": {
+    "Main Question": "What is the main research question addressed in this study?",
+    "Alignment with Objectives": "How does the research question align with the study's objectives?",
+    "Specific Problem or Challenge": "What specific problem or challenge does the research question aim to explore?",
+    "Context of Existing Literature": "How is the research question framed within the context of existing literature?",
+    "Derived Hypotheses": "What hypotheses or sub-questions are derived from the main research question?",
+    "Theoretical or Practical Understanding": "How does the research question contribute to theoretical or practical understanding?",
+    "Definition and Researchability": "Is the research question clearly defined and researchable?",
+    "Implications for Future Studies": "What are the implications of the research question for future studies?",
+    "Connection with Methodology": "How does the research question connect with the study's methodology?",
+    "Broad or Specific": "Is the research question broad or specific, and why is that appropriate for this study?"
+  },
+  "Analytical Framework": {
+    "Chosen Framework": "What analytical framework is used in this study?",
+    "Guidance in Research Process": "How does the chosen framework guide the research process?",
+    "Key Concepts or Theories": "What are the key concepts or theories that framed the study's approach?",
+    "Justification in Context": "How is the analytical framework justified in the context of this research?",
+    "Limitations or Challenges": "What limitations or challenges are associated with the chosen framework?",
+    "Relation to Research Question": "How does the analytical framework relate to the research question?",
+    "Other Considered Frameworks": "What other frameworks were considered or compared, if any?",
+    "Alignment with Data Collection and Analysis": "How does the framework align with the study's data collection and analysis?",
+    "Contributions": "What contributions does this study make to the chosen analytical framework?",
+    "Influence on Interpretation": "How does the analytical framework influence the interpretation of the results?"
+  },
+  "Research Method": {
+    "Method Used": "What research method was used in this study?",
+    "Alignment with Question and Framework": "How does the chosen method align with the research question and framework?",
+    "Specific Techniques or Procedures": "What specific techniques or procedures were implemented within the method?",
+    "Justification or Explanation": "How was the research method justified or explained?",
+    "Limitations or Constraints": "What were the limitations or constraints of the chosen method?",
+    "Validation or Reliability Testing": "How was the research method validated or tested for reliability?",
+    "Innovative or Unconventional Methods": "Were any innovative or unconventional methods employed?",
+    "Comparison to Other Methods": "How does the method compare to other common methods in this field?",
+    "Challenges or Obstacles": "What challenges or obstacles were encountered in applying the method?",
+    "Influence on Conclusions": "How did the research method influence the conclusions or findings?"
+  },
+  "Data Sources": {
+    "Primary and Secondary Sources": "What were the primary and secondary data sources in the study?",
+    "Data Collection Methods": "Describe the data collection methods and how they were implemented.",
+    "Selection and Suitability": "How were the data sources selected, and why were they deemed suitable?",
+    "Reliability and Validity Measures": "What measures were taken to ensure reliability and validity in data collection?",
+    "Specific Challenges": "Were any specific challenges encountered in collecting the data?",
+    "Alignment with Research Question and Framework": "How do the data collection methods align with the research question and framework?",
+    "Ethical Considerations": "What ethical considerations were addressed in data collection?",
+    "Biases or Errors": "How were biases or errors in data collection accounted for or mitigated?",
+    "Role of Technology": "What role did technology or specific tools play in data collection?",
+    "Influence on Generalizability": "How does the choice of data sources influence the study's generalizability or applicability?"
+  },
+  "Time Horizon": {
+    "Time Scope": "What is the time scope or horizon of the study?",
+    "Alignment with Research Question and Method": "How does the time horizon align with the research question and method?",
+    "Design Type": "Is the research based on a longitudinal or cross-sectional design, and why?",
+    "Influence on Interpretation": "How do the time-related aspects influence the interpretation of findings?",
+    "Challenges or Limitations": "What challenges or limitations are associated with the chosen time horizon?",
+    "Effect on Relevance or Applicability": "How does the time horizon affect the study's relevance or applicability?",
+    "Time-Related Theories or Models": "Were any specific time-related theories or models used in the study?",
+    "Relation to Analytical Framework": "How does the time horizon relate to the analytical framework?",
+    "Historical or Future Considerations": "What considerations were given to historical or future aspects within the time horizon?",
+    "Contribution to Novelty": "How does the time horizon contribute to the novelty or uniqueness of the study?"
+  }
+}

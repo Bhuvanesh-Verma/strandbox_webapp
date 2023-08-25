@@ -1,0 +1,30 @@
+[[pages]]
+path = "main.py"
+name = "Home"
+icon = ":house:"
+
+[[pages]]
+name = "Topic Modelling"
+icon = "📝"
+is_section = true
+
+[[pages]]
+path = "pages/topic_modelling.py"
+name = "Example Four"
+icon = "📖"
+
+[[pages]]
+name = "Topic Trajectory"
+icon = ":horse:"
+is_section = true
+
+[[pages]]
+path = "pages/topic_trajectory.py"
+
+[[pages]]
+name = "Simulations"
+icon = ":horse:"
+is_section = true
+
+[[pages]]
+path = "pages/simulations.py"
