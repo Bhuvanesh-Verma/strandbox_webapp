@@ -4,3 +4,4 @@ langchain~=0.0.271
 pandas~=1.5.3
 pillow~=9.3.0
 st-pages
+spacy_streamlit
