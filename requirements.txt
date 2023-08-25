@@ -7,3 +7,4 @@ st-pages
 spacy_streamlit
 pypdf
 sentence-transformers
+qdrant-client
