@@ -1,85 +1,86 @@
-import json
-from tempfile import NamedTemporaryFile
+from collections import defaultdict
 
 import streamlit as st
-from dotenv import load_dotenv
-from langchain.document_loaders import PyPDFLoader
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Qdrant
-from st_pages import add_page_title
+import json
 
-
-def get_embedding_model():
-    model_name = "sentence-transformers/all-mpnet-base-v2"
-    model_kwargs = {'device': 'cpu'}
-    encode_kwargs = {'normalize_embeddings': False}
-    embeddings = HuggingFaceEmbeddings(
-        model_name=model_name,
-        model_kwargs=model_kwargs,
-        encode_kwargs=encode_kwargs
-    )
-    return embeddings
 @st.cache_data
-def get_data(uploaded_file):
-    with open('data/research_structure.json', 'r') as f:
+def load_data():
+    with open('data/strandqa.json', 'r') as f:
         data = json.load(f)
+    f.close()
+    return data
 
+@st.cache_data
+def get_doc_names(doc2data):
+    docs = list(doc2data.keys())
+    names = defaultdict(str)
+    for doc in docs:
+        source = doc2data[doc]["Research Question"]["Main Question"]["source"][0]
+        name = f'{source["metadata"]["title"]} --- {source["metadata"]["doi"]}'
+        names[doc] = name
+    return names
 
-    with NamedTemporaryFile(dir='.', suffix='.pdf') as f:
-        f.write(uploaded_file.getbuffer())
-        loader = PyPDFLoader(f.name)
-        pdf_docs = loader.load()
-
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=['. '])
-        documents = text_splitter.split_documents(pdf_docs)
-        embeddings = get_embedding_model()
-        vector_store = Qdrant.from_documents(
-            documents,
-            embeddings,
-            location=":memory:",  # Local mode with in-memory storage only
-            collection_name=f'{f.name}',
-        )
-
-    return data, vector_store
-
-def create_tab(data, db):
-    cats = [None] + list(data.keys())
+def create_tab(docdata):
+    cats = [None] + list(docdata.keys())
     option = st.selectbox(
         'Select a category',
         (cats))
     if option is not None:
-        question = data[option]
-        st.write(question)
-        docs = db.similarity_search(question)
+        ques = docdata[option]['question']
+        st.write(ques)
+        ans = docdata[option]['result']
+        metadata = docdata[option]['source'][0]['metadata']
+        st.write(ans)
+        for i, src in enumerate(docdata[option]['source']):
+            with st.expander(f'Source {i+1}'):
+                st.write(src['content'])
 
-        for i, doc in enumerate(docs):
-            st.write(f'Answer-{i+1}')
-            st.write(doc.page_content)
+        st.divider()
 
-load_dotenv()
+        with st.expander("Metadata"):
+            st.write(metadata)
+
 
 st.set_page_config(page_title="Interact with Strandbox")
 st.title("Interact with Strandbox")
 
-uploaded_file = st.file_uploader("Choose a pdf file", accept_multiple_files=False)
-if uploaded_file is not None:
-    data, vector_store = get_data(uploaded_file)
+data = load_data()
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(list(data.keys()))
+name_map = {'EIST':'eist', 'RSOG':'rsog', 'Sus-Sci':'sussci'}
 
-    with tab1:
-        create_tab(data["Research Question"], vector_store)
+options = [None] + list(name_map.keys())
+option = st.selectbox(
+    'Choose a Journal',
+    (options))
 
-    with tab2:
-        create_tab(data["Analytical Framework"], vector_store)
+if option is not None:
+    journal = name_map[option]
 
-    with tab3:
-        create_tab(data["Research Method"], vector_store)
+    id2name = get_doc_names(data[journal])
+    name2id = {name:id for id, name in id2name.items()}
+    sample_articles = [None] + list(name2id.keys())
+    name = st.selectbox(
+        'Select a sample document',
+        (sample_articles))
 
-    with tab4:
-        create_tab(data["Data Sources"], vector_store)
 
-    with tab5:
-        create_tab(data["Time Horizon"], vector_store)
+    if name is not None:
+        docid = name2id[name]
+        doc_data = data[journal][docid]
 
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(list(doc_data.keys()))
+
+        with tab1:
+            create_tab(doc_data["Research Question"])
+
+        with tab2:
+            create_tab(doc_data["Analytical Framework"])
+
+        with tab3:
+            create_tab(doc_data["Research Method"])
+
+        with tab4:
+            create_tab(doc_data["Data Sources"])
+
+        with tab5:
+            create_tab(doc_data["Time Horizon"])
