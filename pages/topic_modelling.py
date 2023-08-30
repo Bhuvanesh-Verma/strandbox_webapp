@@ -31,7 +31,7 @@ def create_expanders(data_path, type):
             st.write(data)
 
 st.title('Strandbox')
-st.write('Topic Modelling results')
+st.subheader('📖 Topic Modelling')
 tab1, tab2, tab3, tab4 = st.tabs(["EIST", "RSOG", "Sus-Sci", "All 3"])
 
 with tab1:

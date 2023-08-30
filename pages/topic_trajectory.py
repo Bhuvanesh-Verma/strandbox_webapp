@@ -28,7 +28,7 @@ def create_expanders(data_path, type):
         components.html(html_data, width=1000, height=400)
 
 st.title('Strandbox')
-st.write('Topic trajectories over the time')
+st.subheader('🚀 Topic trajectories')
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Hot", "Cold", "Wallflowers", "Reviving", "Evergreen"])
 

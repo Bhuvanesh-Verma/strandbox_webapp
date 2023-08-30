@@ -9,14 +9,15 @@ import os
 import plotly.io as pio
 
 @st.cache_data
-def print_html(data_path, width=600, height=400):
+def print_html(data_path, width=1000, height=1000):
     with open(data_path, 'r') as f:
         html_data = f.read()
 
     # Render the h1 block, contained in a frame of size 200x200.
     components.html(html_data, width=width, height=height)
 
-add_page_title()
+st.title('Strandbox')
+st.subheader('📡 Networks')
 
 with st.expander('EIST'):
     print_html('data/topic_networks/topic_network_eist_antons.html')

@@ -41,8 +41,9 @@ def create_tab(docdata):
             st.write(metadata)
 
 
-st.set_page_config(page_title="Interact with Strandbox")
-st.title("Interact with Strandbox")
+#st.set_page_config(page_title="Interact with Strandbox")
+st.title('Strandbox')
+st.subheader('؟ Interact with Strandbox')
 
 data = load_data()
 

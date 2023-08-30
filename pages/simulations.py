@@ -12,7 +12,8 @@ def print_html(data_path):
     # Render the h1 block, contained in a frame of size 200x200.
     components.html(html_data, width=600, height=500)
 
-add_page_title()
+st.title('Strandbox')
+st.subheader('🎡 Simulations')
 
 with st.expander('Colaboration network'):
     print_html('data/network_plot/colab_network.html')
