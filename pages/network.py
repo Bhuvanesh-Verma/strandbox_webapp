@@ -44,6 +44,7 @@ with st.expander('3 journals'):
     with tab4:
         print_html('data/topic_networks/topic_network_3_journals_antons_wgt5+.html')
 
+"""
 with st.expander('General Networks'):
     jsonfiles = [f for f in listdir('data/strandmix') if f.endswith('.json')]
     names = {json_file.split('.json')[0]: os.path.join('data/strandmix', json_file) for json_file in jsonfiles}
@@ -60,3 +61,4 @@ with st.expander('General Networks'):
         #print_html(names[option], width=1000, height=800)
         #webbrowser.open(names[option])
 
+"""
